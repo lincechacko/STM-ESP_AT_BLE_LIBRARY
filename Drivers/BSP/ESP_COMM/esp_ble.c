@@ -7,3 +7,11 @@
 
 #include "esp_ble.h"
 
+
+
+
+ESP_AT_STATUS initialiseEspBle(void)
+{
+
+	return (ESP_SUCCESS);
+}
