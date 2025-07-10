@@ -1,1 +1,2 @@
-../Drivers/BSP/BOARD/bsp.c:11:19:transmitAT_commands	1
+../Drivers/BSP/BOARD/bsp.c:52:6:startReceiveData	1
+../Drivers/BSP/BOARD/bsp.c:60:19:sendCmdEsp	1

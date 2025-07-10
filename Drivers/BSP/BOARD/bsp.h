@@ -1,8 +1,8 @@
 /*
  * bsp.h
  *
- *  Created on: Jul 9, 2025
- *      Author: Lince
+ *  Created on: Jul 10, 2025
+ *      Author: Tachlog
  */
 
 #ifndef BSP_BOARD_BSP_H_
@@ -10,6 +10,7 @@
 
 #include "main.h"
 
-HAL_StatusTypeDef transmitAT_commands(uint8_t* data);
+HAL_StatusTypeDef sendCmdEsp(uint8_t * commands , uint16_t size);
+
 
 #endif /* BSP_BOARD_BSP_H_ */

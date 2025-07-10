@@ -1,1 +1,3 @@
-../Drivers/BSP/ESP_COMM/esp_ble.c:14:15:initialiseEspBle	1
+../Drivers/BSP/ESP_COMM/esp_ble.c:59:19:bleInitialize	4
+../Drivers/BSP/ESP_COMM/esp_ble.c:91:19:ble_deinit	2
+../Drivers/BSP/ESP_COMM/esp_ble.c:102:19:sendCmdBle_connectionStatus	2
