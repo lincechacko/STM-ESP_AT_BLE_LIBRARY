@@ -1,3 +1,6 @@
-../Drivers/BSP/ESP_COMM/esp_ble.c:59:19:bleInitialize	24	static
-../Drivers/BSP/ESP_COMM/esp_ble.c:91:19:ble_deinit	16	static
-../Drivers/BSP/ESP_COMM/esp_ble.c:102:19:sendCmdBle_connectionStatus	16	static
+../Drivers/BSP/ESP_COMM/esp_ble.c:60:15:bleInitialize	24	static
+../Drivers/BSP/ESP_COMM/esp_ble.c:94:15:ble_deinit	16	static
+../Drivers/BSP/ESP_COMM/esp_ble.c:112:15:sendCmdBle_connectionStatus	16	static
+../Drivers/BSP/ESP_COMM/esp_ble.c:130:15:bleGetDeviceName	16	static
+../Drivers/BSP/ESP_COMM/esp_ble.c:148:15:bleSetDevice_name	80	static
+../Drivers/BSP/ESP_COMM/esp_ble.c:167:15:bleGetDevice_address	16	static

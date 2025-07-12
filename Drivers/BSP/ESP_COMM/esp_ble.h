@@ -65,7 +65,7 @@
 /*Query/Set Bluetooth LE Device Name*/
 
 #define BLE_GET_DEVICE_NAME                                       "AT+BLENAME?\r\n"
-#define SET_GET_DEVICE_NAME                                       "AT+BLENAME="
+#define BLE_SET_DEVICE_NAME                                       "AT+BLENAME="
 
 
 /*Query/Set Parameters of Bluetooth LE Scanning*/
@@ -117,10 +117,18 @@
 /*ENUM for the last transmitted command*/
 typedef enum
 {
-	CMD_BLE_NONE,
-	CMD_BLE_CHECK_INIT_STATUS ,
-	CMD_BLE_INIT_CLIENT,
-	CMD_BLE_DEINIT,
+	CMD_BLE_NONE,                                /*no command*/
+	CMD_BLE_CHECK_INIT_STATUS ,                  /*command to check BLE initialization status*/
+	CMD_BLE_INIT_CLIENT,                         /*command to initialize the BLE as a client*/
+	CMD_BLE_INIT_SERVER,                         /*command to initialize the BLE as a server*/
+	CMD_AT_TEST,                                 /*command to test the AT firmware*/
+	CMD_AT_STOP_START_ECHO,                      /*command to start or stop the echo feature*/
+	CMD_BLE_DEINIT,                              /*command to de-init the BLE*/
+	CMD_BLE_GET_DEVICE_NAME,                     /*command to get the device name*/
+	CMD_BLE_SET_DEVICE_NAME,                     /*command to set the BLE device name*/
+	CMD_BLE_GET_DEVICE_ADDRESS,                  /*command to get the BLE device address*/
+	CMD_BLE_SET_DEVICE_ADDRESS_TYPE_PUBLIC,      /*command to set the BLE device address as public type*/
+	CMD_BLE_SET_DEVICE_ADDRESS_TYPE_RANDOM,      /*command to set the BLE device address as random type*/
 	CMD_BLE_GET_CONNECTION_STATUS
 
 }EN_CURRENT_ESP_AT_CMD;
@@ -149,6 +157,12 @@ typedef enum
 	ESP_BLE_CONNECTION_SUCCESS,
 }EN_ESP_BLE_CONNECTION_STATUS;
 
+/*structure for the return for the function with command and transmission status*/
+typedef struct
+{
+	EN_CURRENT_ESP_AT_CMD currentCmd;
+	EN_ESP_BLE_STATUS status;
+}ST_ESP_RETURN;
 
 typedef struct
 {
@@ -164,19 +178,54 @@ typedef struct
 }ESP_HAL_CONFIG;
 
 
+/**
+  * @brief  intialize the ble in esp
+  * @param  bleInit_mode : mode to initialize the uart
+  * @retval return the transmission is success or not
+  */
+ST_ESP_RETURN bleInitialize (EN_ESP_BLE_INIT bleInit_mode);
 
 
 
+/**
+  * @brief  deinitialize esp ble
+  * @param  None
+  * @retval return the transmission is success or not
+  */
+ST_ESP_RETURN ble_deinit(void);
 
 
 
+/**
+  * @brief  sending command to get the ble connection status
+  * @param  None
+  * @retval return the transmission is success or not
+  */
+ST_ESP_RETURN sendCmdBle_connectionStatus(void);
 
 
+/**
+  * @brief  function get the BLE device name
+  * @param  None
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleGetDeviceName(void);
 
 
+/**
+  * @brief  function set the BLE device name
+  * @param  None
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleSetDevice_name(char * deviceName);
 
 
-
+/**
+  * @brief  function set the BLE device name
+  * @param  None
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleGetDevice_address(void);
 
 
 #endif /* BSP_ESP_BLE_SLAVE_ESPBLE_H_ */
