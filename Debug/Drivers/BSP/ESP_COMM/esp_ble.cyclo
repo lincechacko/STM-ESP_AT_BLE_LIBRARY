@@ -4,3 +4,6 @@
 ../Drivers/BSP/ESP_COMM/esp_ble.c:130:15:bleGetDeviceName	2
 ../Drivers/BSP/ESP_COMM/esp_ble.c:148:15:bleSetDevice_name	2
 ../Drivers/BSP/ESP_COMM/esp_ble.c:167:15:bleGetDevice_address	2
+../Drivers/BSP/ESP_COMM/esp_ble.c:183:15:bleSetDevice_addressType	4
+../Drivers/BSP/ESP_COMM/esp_ble.c:208:15:bleGet_scanningParam	2
+../Drivers/BSP/ESP_COMM/esp_ble.c:225:19:checkCmdResponse_status	4

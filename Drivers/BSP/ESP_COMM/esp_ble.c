@@ -46,7 +46,7 @@
 #include <string.h>
 
 EN_CURRENT_ESP_AT_CMD currentTransmitterCmd = DEFINE_ZERO; /*variable to check which command is transmitted*/
-
+char espReceivedBuffer[200] = {0};
 
 ESP_HAL_CONFIG  esp_config = {
 		sendCmdEsp
@@ -142,7 +142,7 @@ ST_ESP_RETURN bleGetDeviceName(void)
 
 /**
   * @brief  function set the BLE device name
-  * @param  None
+  * @param  deviceName : name to be given for the device
   * @retval return the transmission is success or not and command sent
   */
 ST_ESP_RETURN bleSetDevice_name(char * deviceName)
@@ -160,7 +160,7 @@ ST_ESP_RETURN bleSetDevice_name(char * deviceName)
 
 
 /**
-  * @brief  function set the BLE device name
+  * @brief  function to get the device address
   * @param  None
   * @retval return the transmission is success or not and command sent
   */
@@ -173,4 +173,63 @@ ST_ESP_RETURN bleGetDevice_address(void)
 	if(status) espReturn.status = ESP_BLE_ERROR;
 	else espReturn.status = ESP_BLE_SUCCESS;
 	return(espReturn);
+}
+
+/**
+  * @brief  function set the BLE device address
+  * @param  deviceAddressType : address type to be given for the device
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleSetDevice_addressType(EN_BLE_ADDRESS_TYPE deviceAddressType)
+{
+	ST_ESP_RETURN espReturn = {DEFINE_ZERO};
+	HAL_StatusTypeDef status = DEFINE_ZERO;
+	if(deviceAddressType == BLE_ADDRESS_TYPE_PUBLIC)
+	{
+		status = esp_config.sendCmdUart((uint8_t *)BLE_SET_DEVICE_ADDRESS_TYPE_PUBLIC, sizeof(BLE_SET_DEVICE_ADDRESS_TYPE_PUBLIC));
+		espReturn.currentCmd = CMD_BLE_SET_DEVICE_ADDRESS_TYPE_PUBLIC;
+	}
+	else if(deviceAddressType == BLE_ADDRESS_TYPE_RANDOM)
+	{
+		status = esp_config.sendCmdUart((uint8_t *)BLE_SET_DEVICE_ADDRESS_TYPE_RANDOM, sizeof(BLE_SET_DEVICE_ADDRESS_TYPE_RANDOM));
+		espReturn.currentCmd = CMD_BLE_SET_DEVICE_ADDRESS_TYPE_RANDOM;
+	}
+	if(status) espReturn.status = ESP_BLE_ERROR;
+	else espReturn.status = ESP_BLE_SUCCESS;
+	return(espReturn);
+}
+
+
+/**
+  * @brief  function to get the scanning parameters
+  * @param  None
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleGet_scanningParam(void)
+{
+	ST_ESP_RETURN espReturn = {DEFINE_ZERO};
+	HAL_StatusTypeDef status = DEFINE_ZERO;
+	status = esp_config.sendCmdUart((uint8_t *)BLE_GET_SCAN_PARAM, sizeof(BLE_GET_SCAN_PARAM));
+	espReturn.currentCmd = CMD_BLE_GET_SCAN_PARAM;
+	if(status) espReturn.status = ESP_BLE_ERROR;
+	else espReturn.status = ESP_BLE_SUCCESS;
+	return(espReturn);
+}
+
+
+/**
+  * @brief  function to check for the response received from the ESP
+  * @param  None
+  * @retval return the command sent  is success or not.
+  */
+EN_ESP_BLE_STATUS checkCmdResponse_status(char *dataReceived , uint16_t length)
+{
+	for(int i = DEFINE_ZERO; i < length; i++)
+	{
+		if(dataReceived[i] == 'K' && dataReceived[i-1] == 'O')
+		{
+			return ESP_BLE_SUCCESS;
+		}
+	}
+	return ESP_BLE_ERROR;
 }

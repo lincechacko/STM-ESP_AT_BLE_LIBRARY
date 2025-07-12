@@ -745,9 +745,11 @@ Discarded input sections
  .bss           0x00000000        0x0 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .bss.currentTransmitterCmd
                 0x00000000        0x1 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .bss.espReceivedBuffer
+                0x00000000       0xc8 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .data.esp_config
                 0x00000000        0x4 ./Drivers/BSP/ESP_COMM/esp_ble.o
- .rodata        0x00000000       0x72 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .rodata        0x00000000       0xa7 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .text.bleInitialize
                 0x00000000       0x7c ./Drivers/BSP/ESP_COMM/esp_ble.o
  .text.ble_deinit
@@ -760,12 +762,18 @@ Discarded input sections
                 0x00000000       0x90 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .text.bleGetDevice_address
                 0x00000000       0x54 ./Drivers/BSP/ESP_COMM/esp_ble.o
- .debug_info    0x00000000      0x3e3 ./Drivers/BSP/ESP_COMM/esp_ble.o
- .debug_abbrev  0x00000000      0x140 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .text.bleSetDevice_addressType
+                0x00000000       0x7c ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .text.bleGet_scanningParam
+                0x00000000       0x54 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .text.checkCmdResponse_status
+                0x00000000       0x4c ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .debug_info    0x00000000      0x4f4 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .debug_abbrev  0x00000000      0x177 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_aranges
-                0x00000000       0x48 ./Drivers/BSP/ESP_COMM/esp_ble.o
+                0x00000000       0x60 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_rnglists
-                0x00000000       0x32 ./Drivers/BSP/ESP_COMM/esp_ble.o
+                0x00000000       0x44 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_macro   0x00000000      0x2fe ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_macro   0x00000000      0xad8 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_macro   0x00000000      0x29b ./Drivers/BSP/ESP_COMM/esp_ble.o
@@ -829,10 +837,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x146 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_macro   0x00000000       0x16 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .debug_macro   0x00000000       0x20 ./Drivers/BSP/ESP_COMM/esp_ble.o
- .debug_line    0x00000000      0xa73 ./Drivers/BSP/ESP_COMM/esp_ble.o
- .debug_str     0x00000000    0x8a5f2 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .debug_line    0x00000000      0xb2d ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .debug_str     0x00000000    0x8a6cb ./Drivers/BSP/ESP_COMM/esp_ble.o
  .comment       0x00000000       0x44 ./Drivers/BSP/ESP_COMM/esp_ble.o
- .debug_frame   0x00000000       0xe8 ./Drivers/BSP/ESP_COMM/esp_ble.o
+ .debug_frame   0x00000000      0x158 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .ARM.attributes
                 0x00000000       0x34 ./Drivers/BSP/ESP_COMM/esp_ble.o
  .group         0x00000000        0xc ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o

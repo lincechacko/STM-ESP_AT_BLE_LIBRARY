@@ -129,9 +129,18 @@ typedef enum
 	CMD_BLE_GET_DEVICE_ADDRESS,                  /*command to get the BLE device address*/
 	CMD_BLE_SET_DEVICE_ADDRESS_TYPE_PUBLIC,      /*command to set the BLE device address as public type*/
 	CMD_BLE_SET_DEVICE_ADDRESS_TYPE_RANDOM,      /*command to set the BLE device address as random type*/
-	CMD_BLE_GET_CONNECTION_STATUS
+	CMD_BLE_GET_CONNECTION_STATUS,
+	CMD_BLE_GET_SCAN_PARAM,
 
 }EN_CURRENT_ESP_AT_CMD;
+
+/*ENUM for the BLE address type*/
+typedef enum
+{
+	BLE_ADDRESS_TYPE_PUBLIC,
+	BLE_ADDRESS_TYPE_RANDOM
+}EN_BLE_ADDRESS_TYPE;
+
 
 /*status of the BLE transmission*/
 typedef enum
@@ -226,6 +235,27 @@ ST_ESP_RETURN bleSetDevice_name(char * deviceName);
   * @retval return the transmission is success or not and command sent
   */
 ST_ESP_RETURN bleGetDevice_address(void);
+
+/**
+  * @brief  function set the BLE device address
+  * @param  deviceAddressType : address type to be given for the device
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleSetDevice_addressType(EN_BLE_ADDRESS_TYPE deviceAddressType);
+
+/**
+  * @brief  function to get the scanning parameters
+  * @param  None
+  * @retval return the transmission is success or not and command sent
+  */
+ST_ESP_RETURN bleGet_scanningParam(void);
+
+/**
+  * @brief  function to check for the response received from the ESP
+  * @param  None
+  * @retval return the command sent  is success or not.
+  */
+EN_ESP_BLE_STATUS checkCmdResponse_status(char *dataReceived , uint16_t length);
 
 
 #endif /* BSP_ESP_BLE_SLAVE_ESPBLE_H_ */
